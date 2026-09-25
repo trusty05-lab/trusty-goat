@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Trusty Hub - creator profile and links" />
+    <title>Trusty Hub</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23263846'/%3E%3Cpath d='M18 20h28v8H36v22h-8V28h-10z' fill='%23d6ebff'/%3E%3Ccircle cx='49' cy='15' r='4' fill='white'/%3E%3C/svg%3E" />
+    <style>
+      :root {
+        --bg-1: #0d1822;
+        --bg-2: #263846;
+        --card: rgba(35, 46, 57, 0.78);
+        --card-strong: rgba(22, 31, 40, 0.9);
+        --border: rgba(226, 232, 240, 0.12);
+        --text: #f8fbff;
+        --muted: #dfeaf8;
+        --accent: #d6ebff;
+        --accent-2: #b9d9ff;
+        --accent-3: #f3d7ac;
+        --glow: rgba(191, 219, 254, 0.22);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(214, 235, 255, 0.14), transparent 18%),
+          radial-gradient(circle at bottom right, rgba(243, 215, 172, 0.12), transparent 26%),
+          linear-gradient(160deg, var(--bg-1), var(--bg-2));
+        color: var(--text);
+      }
+
+      body {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 32px 18px;
+        overflow: hidden;
+      }
+
+      .snow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background: transparent;
+      }
+
+      .snowflake {
+        position: absolute;
+        top: -10%;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 0 12px rgba(214, 235, 255, 0.4);
+        animation: fall linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translate3d(0, 0, 0) scale(0.7);
+          opacity: 0;
+        }
+        12% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(18px, 110vh, 0) scale(1.25);
+          opacity: 0;
+        }
+      }
+
+      .container {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(34, 46, 59, 0.76);
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: 22px 20px 18px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+      }
+
+      .banner {
+        height: 120px;
+        border-radius: 22px;
+        margin: -10px -10px 0;
+        background: url("banner.jpg") center/cover no-repeat;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .banner::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.22));
+      }
+
+      .profile {
+        text-align: center;
+        margin-top: -56px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .avatar {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 14px;
+        border-radius: 50%;
+        display: block;
+        overflow: hidden;
+        border: 4px solid rgba(15, 23, 42, 0.9);
+        background:
+          linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)),
+          url("profile.jpg") center/cover no-repeat;
+        box-shadow: 0 0 0 6px rgba(255,255,255,0.04), 0 0 30px rgba(56, 189, 248, 0.25);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 2.7rem);
+        letter-spacing: 0.06em;
+      }
+
+      .username {
+        margin-top: 8px;
+        color: #c7d7f7;
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+      }
+
+      .description {
+        margin: 14px auto 0;
+        max-width: 290px;
+        color: #e7f1ff;
+        font-size: 0.98rem;
+        line-height: 1.6;
+        letter-spacing: 0.06em;
+        font-weight: 600;
+        text-shadow: 0 0 18px rgba(191, 219, 254, 0.18);
+      }
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        width: 100%;
+        min-height: 76px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        text-decoration: none;
+        color: var(--text);
+        background: linear-gradient(110deg, rgba(214, 235, 255, 0.12), rgba(255,255,255,0.035));
+        border: 1px solid rgba(226, 235, 245, 0.15);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 8px 18px rgba(7, 14, 22, 0.12);
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .link:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(110deg, rgba(214, 235, 255, 0.2), rgba(243, 215, 172, 0.1));
+        border-color: rgba(214, 235, 255, 0.34);
+        box-shadow: 0 14px 26px rgba(7, 14, 22, 0.2), 0 0 22px rgba(191, 219, 254, 0.1);
+      }
+
+      .link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .link-info {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-align: left;
+      }
+
+      .brand-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        border-radius: 14px;
+        color: #f8fbff;
+        background: rgba(214, 235, 255, 0.14);
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .brand-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .link-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .link-title {
+        font-size: 0.98rem;
+        font-weight: 700;
+      }
+
+      .link-subtitle {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 400;
+      }
+
+      .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        flex: 0 0 30px;
+        border-radius: 50%;
+        color: var(--muted);
+        background: rgba(255,255,255,0.07);
+        font-size: 1rem;
+        transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      }
+
+      .link:hover .icon {
+        color: var(--text);
+        background: rgba(214, 235, 255, 0.16);
+        transform: translateX(2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="snow" aria-hidden="true"></div>
+
+    <main class="container">
+      <div class="banner"></div>
+
+      <section class="profile" aria-label="Profile details">
+        <div class="avatar" aria-label="Profile picture"></div>
+        <h1>Trusty</h1>
+        <div class="username">@trus1y</div>
+        <p class="description">I love all my fans ♡</p>
+      </section>
+
+      <nav class="links" aria-label="Quick links">
+        <a class="link primary" href="https://www.roblox.com/users/4705804547/profile" target="_blank" rel="noreferrer">
+          <span class="link-info">
+            <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m5.2 3.5 15.3-2.7-2.7 15.3-15.3 2.7L5.2 3.5Zm5.1 4.8-1 5.1 5.1-1 1-5.1-5.1 1Z"/></svg></span>
+            <span class="link-copy"><span class="link-title">My Roblox</span><span class="link-subtitle">Visit my profile</span></span>
+          </span>
+          <span class="icon">→</span>
+        </a>
+        <a class="link" href="https://discord.gg/yfcGF3EuzV" target="_blank" rel="noreferrer">
+          <span class="link-info">
+            <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.7 5.2A18 18 0 0 0 15.3 4l-.5 1a16.4 16.4 0 0 0-5.6 0l-.5-1a18 18 0 0 0-4.4 1.2C1.5 9.2.7 13 .9 16.8a18 18 0 0 0 5.4 2.7l1.2-2a11.7 11.7 0 0 1-1.9-.9l.5-.4a12.8 12.8 0 0 0 11.8 0l.5.4a11.7 11.7 0 0 1-1.9.9l1.2 2a18 18 0 0 0 5.4-2.7c.3-4.4-.8-8.2-3.4-11.6ZM8.7 14.6c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg></span>
+            <span class="link-copy"><span class="link-title">My Discord</span><span class="link-subtitle">Come hang out</span></span>
+          </span>
+          <span class="icon">→</span>
+        </a>
+        <a class="link" href="https://youtube.com/@trusty_m4?si=ynQgSWKAEfqR1zCj" target="_blank" rel="noreferrer">
+          <span class="link-info">
+            <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.3 3.7-6.3 3.7Z"/></svg></span>
+            <span class="link-copy"><span class="link-title">My YouTube</span><span class="link-subtitle">Watch my videos</span></span>
+          </span>
+          <span class="icon">→</span>
+        </a>
+      </nav>
+    </main>
+
+    <script>
+      const snowContainer = document.querySelector('.snow');
+      const flakeCount = 65;
+
+      for (let i = 0; i < flakeCount; i++) {
+        const flake = document.createElement('span');
+        flake.className = 'snowflake';
+
+        const left = Math.random() * 100;
+        const duration = 8 + Math.random() * 9;
+        const delay = Math.random() * 12;
+        const size = 2 + Math.random() * 5;
+
+        flake.style.left = left + 'vw';
+        flake.style.animationDuration = duration + 's';
+        flake.style.animationDelay = delay + 's';
+        flake.style.width = size + 'px';
+        flake.style.height = size + 'px';
+        flake.style.opacity = (0.45 + Math.random() * 0.55).toFixed(2);
+
+        snowContainer.appendChild(flake);
+      }
+    </script>
+  </body>
+</html>
